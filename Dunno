@@ -1,0 +1,71 @@
+import random
+
+data = ['sequence', 'election', 'dialogue', 'confront', 'increase', 'feedback', 'multiply', 'profound', 'headline',
+        'pressure', 'area', 'echo', 'vain', 'soap', 'jail']
+
+
+
+def wordPicker():
+    x = random.choice(data)
+    return x
+
+
+#wordPicker()
+
+
+def wordScrambler(y):
+    shuffled = list(y)
+    random.shuffle(shuffled)
+    shuffled = ''.join(shuffled)
+    return shuffled
+
+
+#wordScrambler()
+
+gameLoop = True
+
+
+def wordGame():
+    #Pick a word
+    q = wordPicker()
+
+    youSuck = 0
+    while gameLoop:
+        x = wordScrambler(q)
+        print(x)
+        y = input("Guess the word: ")
+        if y != q:
+            print("Wrong matey")
+            wordScrambler(x)
+            youSuck += 1
+        if youSuck == 3:
+            print("You Suck, Game Over")
+            print("It was actually "+q)
+            x = input("Play Again? y/n: ")
+            if x == 'y':
+                wordGame()
+            else:
+                print("Thanks for playing!")
+                break
+            break
+        elif y == q:
+            print("Correct-o!")
+            x = input("Play Again? y/n: ")
+            if x == 'y':
+                wordGame()
+            else:
+                print("Thanks for playing!")
+                break
+        else:
+            pass
+
+
+def theGame():
+    x = input ("Would you like to play a game? y/n: ")
+    if x == 'y':
+        wordGame()
+    else:
+        print("Okay see ya later gator")
+
+
+theGame()
